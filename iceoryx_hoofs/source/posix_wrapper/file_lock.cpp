@@ -102,7 +102,7 @@ FileLock::FileLock(FileLock&& rhs) noexcept
 
 FileLock& FileLock::operator=(FileLock&& rhs) noexcept
 {
-    if (this != &rhs)
+    if (this != &rhs && &rhs != nullptr)
     {
         if (closeFileDescriptor().has_error())
         {

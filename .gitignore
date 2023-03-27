@@ -1,3 +1,4 @@
+.build/
 build/
 build_out_of_tree/
 build_package/

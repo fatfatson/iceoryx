@@ -43,6 +43,18 @@ inline expected<const void*, ChunkReceiveResult> UntypedSubscriberImpl<BaseSubsc
 }
 
 template <typename BaseSubscriberType>
+inline expected<const void*, ChunkReceiveResult> UntypedSubscriberImpl<BaseSubscriberType>::take(int& size) noexcept
+{
+    auto result = BaseSubscriber::takeChunk();
+    if (result.has_error())
+    {
+        return error<ChunkReceiveResult>(result.get_error());
+    }
+    size = result.value()->userPayloadSize();
+    return success<const void*>(result.value()->userPayload());
+}
+
+template <typename BaseSubscriberType>
 inline void UntypedSubscriberImpl<BaseSubscriberType>::release(const void* const userPayload) noexcept
 {
     auto chunkHeader = mepoo::ChunkHeader::fromUserPayload(userPayload);

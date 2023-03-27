@@ -56,6 +56,7 @@ class UntypedSubscriberImpl : public BaseSubscriberType
     ///          and must be manually done by calling 'release'
     ///
     expected<const void*, ChunkReceiveResult> take() noexcept;
+    expected<const void*, ChunkReceiveResult> take(int& size) noexcept;
 
     ///
     /// @brief Releases the ownership of the chunk provided by the user-payload pointer.

@@ -260,7 +260,7 @@ using TimePointNs_t = std::chrono::time_point<BaseClock_t, DurationNs_t>;
 namespace runtime
 {
 using namespace units::duration_literals;
-constexpr units::Duration PROCESS_WAITING_FOR_ROUDI_TIMEOUT = 60_s;
+constexpr units::Duration PROCESS_WAITING_FOR_ROUDI_TIMEOUT = 5_s;
 constexpr units::Duration PROCESS_KEEP_ALIVE_INTERVAL = 3 * roudi::DISCOVERY_INTERVAL;  // > DISCOVERY_INTERVAL
 constexpr units::Duration PROCESS_KEEP_ALIVE_TIMEOUT = 5 * PROCESS_KEEP_ALIVE_INTERVAL; // > PROCESS_KEEP_ALIVE_INTERVAL
 } // namespace runtime

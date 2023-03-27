@@ -134,6 +134,7 @@ class ErrorHandler
     static void
     defaultHandler(const uint32_t error, const char* errorName, const ErrorLevel level = ErrorLevel::FATAL) noexcept;
 
+  public:
     static iox::HandlerFunction handler;
 };
 
