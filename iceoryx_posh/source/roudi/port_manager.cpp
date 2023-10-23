@@ -50,6 +50,7 @@ PortManager::PortManager(RouDiMemoryInterface* roudiMemoryInterface) noexcept
     {
         LogFatal() << "Could not get PortPool!";
         errorHandler(PoshError::PORT_MANAGER__PORT_POOL_UNAVAILABLE, iox::ErrorLevel::FATAL);
+        return;
     }
     m_portPool = maybePortPool.value();
 

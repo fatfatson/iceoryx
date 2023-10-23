@@ -60,6 +60,11 @@ class PortManager
 
     virtual ~PortManager() noexcept = default;
 
+    bool isValid()
+    {
+        return m_portPool != nullptr;
+    }
+
     /// @todo iox-#518 Remove this later
     void stopPortIntrospection() noexcept;
 
