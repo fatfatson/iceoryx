@@ -102,9 +102,15 @@ FileLock::FileLock(FileLock&& rhs) noexcept
 
 FileLock& FileLock::operator=(FileLock&& rhs) noexcept
 {
-    #pragma clang diagnostic ignored "-Wtautological-undefined-compare"
-    /* 检查&rhs!=nullptr是为了避免在前置资源初始化失败的情况下还要继续跑，会崩掉，而我们希望只是报个错不要崩。只能说这个库容错性太差了！ */
-    if (this != &rhs && &rhs != nullptr)
+#pragma clang diagnostic ignored "-Wtautological-undefined-compare"
+    /*
+    检查&rhs!=nullptr是为了避免在前置资源初始化失败的情况下还要继续跑，会崩掉，
+    而我们希望只是报个错不要崩。只能说这个库容错性太差了！
+    而且检查的方式要注意不能直接与nullptr比较，因为在release版会被编译优化掉（认为引用不可能为空）
+    但事实上这个库就是能搞出这样的事。。
+    */
+    auto* rhsAsPtr = (char*)&rhs + 1;
+    if (this != &rhs && rhsAsPtr != (char*)1)
     {
         if (closeFileDescriptor().has_error())
         {
