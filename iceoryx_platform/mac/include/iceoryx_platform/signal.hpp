@@ -19,9 +19,9 @@
 
 #include <signal.h>
 
-inline void psignal(int sig, const char* s)
-{
-    psignal(static_cast<unsigned int>(sig), s);
-}
+// inline void psignal(int sig, const char* s)
+// {
+//     psignal(static_cast<unsigned int>(sig), s);
+// }
 
 #endif // IOX_HOOFS_MAC_PLATFORM_SIGNAL_HPP
